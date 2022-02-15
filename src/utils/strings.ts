@@ -5,4 +5,5 @@ export const Strings = {
     login: 'Ingresar',
     userError: 'Error al cargar usuario',
     ok: 'Ok',
+    you: ` (Tú)`
 }

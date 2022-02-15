@@ -35,7 +35,8 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 30, 
         borderTopRightRadius: 30
     },
-    icon:{height:'100%',width:30,resizeMode:'contain', margin: 20}
+    icon:{height:'100%',width:30,resizeMode:'contain', margin: 20},
+    indicator:{alignSelf:"center", marginTop: '50%', position: 'absolute'}
 })
 
 export default styles;

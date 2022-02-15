@@ -30,8 +30,14 @@ export const appSlice = createSlice({
     initialState,
     reducers: {
       reset: () => initialState,
-      clearError: (state: AppState, action: PayloadAction<any>) => {
+      clearError: (state: AppState, action: PayloadAction) => {
         state.error = '';
+      },
+      logOut: (state: AppState, action: PayloadAction) => {
+        state.user = undefined;
+      },
+      setLoading: (state: AppState, action: PayloadAction<boolean>) => {
+        state.loading = action.payload;
       },
     },
     extraReducers: builder => {

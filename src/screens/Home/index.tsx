@@ -4,19 +4,18 @@ import { View, Image } from 'react-native';
 import BottomSheet from '@gorhom/bottom-sheet';
 import NavigationBar from '../../navigation/components/NavigationBar';
 import { Colors } from '../../utils/colors';
+import { useAppSelector } from '../../redux/hooks';
+import { useUsersActions } from '../../data/users';
+import { useAppActions } from '../../data/app';
 
 export default function HomeScreen({navigation}:any) {
 
-  // ref
+  const UsersActions = useUsersActions();
+  const AppActions = useAppActions();
+  const { loading } = useAppSelector(state => state.app)
+  const { parkUsers } = useAppSelector(state => state.users)
   const bottomSheetRef = useRef<BottomSheet>(null);
-
-  // variables
   const snapPoints = useMemo(() => ['11%', '60%'], []);
-
-  // callbacks
-  const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
-  }, []);
 
 
   return (<View style={styles.container}>
@@ -25,7 +24,6 @@ export default function HomeScreen({navigation}:any) {
         ref={bottomSheetRef}
         index={0}
         snapPoints={snapPoints}
-        onChange={handleSheetChanges}
         handleStyle={{display:'none'}}
       >
         <View style={styles.sheetContainer}>

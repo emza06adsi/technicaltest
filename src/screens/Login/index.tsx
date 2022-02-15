@@ -10,8 +10,8 @@ import { Colors } from '../../utils/colors';
 
 export default function LoginScreen({navigation}:any) {
 
-  const [ email, setEmail ] = useState<string>('');
-  const [ password, setPassword ] = useState<string>('');
+  const [ email, setEmail ] = useState<string>('genoma3d@gmail.com');
+  const [ password, setPassword ] = useState<string>('12345678');
   const AppActions = useAppActions();
   const { loading } = useAppSelector(state => state.app);
 

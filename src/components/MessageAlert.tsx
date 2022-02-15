@@ -20,7 +20,7 @@ export default function MessageAlert(props:MessageAlertProps) {
                 <View style={styles.container}>
                     <Text style={styles.label}>{props.message}</Text>
                     <Button title={Strings.ok} onPress={()=>{
-                        appActions.clearError('');
+                        appActions.clearError();
                     }}/>
                 </View>
             </View>

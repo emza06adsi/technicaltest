@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React from 'react'
 import { TextInput, TextInputProps, View, Text, StyleSheet } from 'react-native'
 import { Colors } from '../utils/colors'
 
@@ -25,13 +25,14 @@ export default function CustomTextInput(props:CustomTextInputProps) {
 const styles = StyleSheet.create({
     input:{
         height: 30,
+        color: Colors.White,
     },
     inputContainer:{
-        borderWidth: 0.5,
-        padding: 5,
-        borderRadius: 10,
+        borderBottomWidth: 0.5,
+        borderColor: Colors.White,
     },
     labelDefault:{
-        color: Colors.White
+        color: Colors.White,
+        fontWeight: 'bold'
     }
 })

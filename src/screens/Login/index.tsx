@@ -5,7 +5,7 @@ import CustomTextInput from '../../components/CustomTextInput';
 import { Strings } from '../../utils/strings';
 import CustomButton from '../../components/CustomButton';
 
-export default function LoginScreen() {
+export default function LoginScreen({navigation}) {
   return (<View style={styles.container}>
     <CustomTextInput
       label={Strings.email}
@@ -20,6 +20,9 @@ export default function LoginScreen() {
     <CustomButton
       label={Strings.login}
       style={styles.buttonStyle}
+      onPress={()=>{
+        navigation.navigate('HomeScreen')
+      }}
     />
   </View>)
 }

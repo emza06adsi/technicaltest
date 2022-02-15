@@ -1,13 +1,17 @@
 import React from 'react'
 import { TouchableOpacity, View, Image, StyleSheet } from 'react-native'
+import { useAppActions } from '../../data/app';
 import { Colors } from '../../utils/colors';
 
 export default function NavigationBar(props:{
     navigation:any
 }) {
+
+    const AppActions = useAppActions();
+
     return (<View style={styles.container}>
         <TouchableOpacity style={styles.container} onPress={()=>{
-            props.navigation && props.navigation.goBack()
+            AppActions.logOut();
         }}>
       <Image style={styles.icon} source={require('../../images/leftArrow.png')} />
     </TouchableOpacity>

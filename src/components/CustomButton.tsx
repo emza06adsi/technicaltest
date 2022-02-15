@@ -11,7 +11,7 @@ export interface CustomButtomProps {
 }
 
 export default function CustomButton(props:CustomButtomProps) {
-  return (<TouchableOpacity onPress={props.onPress} disabled={props.disabled} style={[styles.buttonDefaultStyle, props.style]}>
+  return (<TouchableOpacity onPress={props.onPress} disabled={props.disabled} style={[styles.buttonDefaultStyle, props.style, {opacity: props.disabled ? 0.5 : 1.0}]}>
     <Text style={[styles.label, props.labelStyle]}>{props.label}</Text>
   </TouchableOpacity>)
 }

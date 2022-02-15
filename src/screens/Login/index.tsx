@@ -7,6 +7,7 @@ import CustomButton from '../../components/CustomButton';
 import { useAppActions } from '../../data/app';
 import { useAppSelector } from '../../redux/hooks';
 import { Colors } from '../../utils/colors';
+import { validateEmail } from '../../utils/helpers';
 
 export default function LoginScreen({navigation}:any) {
 
@@ -41,6 +42,7 @@ export default function LoginScreen({navigation}:any) {
         label={Strings.login}
         style={styles.buttonStyle}
         onPress={()=>loginAction()}
+        disabled={!validateEmail(email) || password.length <= 3}
       />
     }
   </View>)

@@ -33,6 +33,9 @@ export const appSlice = createSlice({
       clearError: (state: AppState, action: PayloadAction) => {
         state.error = '';
       },
+      setError: (state: AppState, action: PayloadAction<string>) => {
+        state.error = action.payload;
+      },
       logOut: (state: AppState, action: PayloadAction) => {
         state.user = undefined;
       },

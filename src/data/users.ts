@@ -3,7 +3,6 @@ import { useRef } from 'react'
 import { useAppDispatch } from '../redux/hooks'
 import CustomApiProvider from '../services/CustomApiProvider'
 import { Endpoints } from '../utils/endpoints'
-import { Strings } from '../utils/strings'
 
 export interface ParkUser {
     uid: string
@@ -39,26 +38,26 @@ export const usersSlice = createSlice({
     initialState,
     reducers: {
       reset: () => initialState,
+      setParkUsers: (state: ParkUsersState, action: PayloadAction<ParkUser[]>) => {
+        state.parkUsers = action.payload;
+      }
     },
     extraReducers: builder => {}
 })
 
-export const getParkUsers = createAsyncThunk('users/getParkUsers',async () => {
-  try{
-    const parkUsersResult = await CustomApiProvider.get(Endpoints.displayUsers) as ParkUser[];
-    return { parkUsers: parkUsersResult }
-  }catch(e){
-    console.error(`${e}`)
-    return { error: `${e}` }
-  }
-});
+export const getParkUsers = ():Promise<ParkUser[]> =>  {
+  return new Promise((resolve,reject)=>{
+    return CustomApiProvider.get(Endpoints.displayUsers).then((results)=> {
+      resolve(results as ParkUser[])
+    }).catch((e)=>reject(e));
+  })
+}
 
 //Custom hook
 export function useUsersActions() {
     const dispatch = useAppDispatch()
     const actions = {
       ...usersSlice.actions,
-      getParkUsers,
     }
     const refActions = useRef(bindActionCreators(actions, dispatch))
     return refActions.current

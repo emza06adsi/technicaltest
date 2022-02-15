@@ -5,7 +5,7 @@ import BottomSheet from '@gorhom/bottom-sheet';
 import NavigationBar from '../../navigation/components/NavigationBar';
 import { Colors } from '../../utils/colors';
 import { useAppSelector } from '../../redux/hooks';
-import { useUsersActions } from '../../data/users';
+import { getParkUsers, useUsersActions } from '../../data/users';
 import { useAppActions } from '../../data/app';
 
 export default function HomeScreen({navigation}:any) {
@@ -16,6 +16,17 @@ export default function HomeScreen({navigation}:any) {
   const { parkUsers } = useAppSelector(state => state.users)
   const bottomSheetRef = useRef<BottomSheet>(null);
   const snapPoints = useMemo(() => ['11%', '60%'], []);
+
+
+  useEffect(()=>{
+    AppActions.setLoading(true)
+    getParkUsers().then((foundUsers)=>{
+      UsersActions.setParkUsers(foundUsers);
+      AppActions.setLoading(false)
+    }).catch((e)=>{
+      AppActions.setError(`${e}`)
+    })
+  },[])
 
 
   return (<View style={styles.container}>

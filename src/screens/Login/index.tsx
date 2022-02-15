@@ -11,8 +11,8 @@ import { validateEmail } from '../../utils/helpers';
 
 export default function LoginScreen({navigation}:any) {
 
-  const [ email, setEmail ] = useState<string>('genoma3d@gmail.com');
-  const [ password, setPassword ] = useState<string>('12345678');
+  const [ email, setEmail ] = useState<string>('');
+  const [ password, setPassword ] = useState<string>('');
   const AppActions = useAppActions();
   const { loading } = useAppSelector(state => state.app);
 
@@ -36,6 +36,7 @@ export default function LoginScreen({navigation}:any) {
       value={password}
       onChangeText={(newPass)=>setPassword(newPass)}
       onSubmit={()=>loginAction()}
+      secureTextEntry
     />
     {
       loading ? <ActivityIndicator style={styles.activityIndicator} color={Colors.White} /> : <CustomButton

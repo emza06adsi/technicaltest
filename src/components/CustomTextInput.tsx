@@ -15,6 +15,7 @@ export default function CustomTextInput(props:CustomTextInputProps) {
   return (<View style={[styles.inputContainer, props.containerStyle]}>
       {props.label && <Text style={[styles.labelDefault]}>{props.label}</Text>}
       <TextInput
+        placeholderTextColor={'rgba(255,255,255,0.55)'}
         {...props}
         numberOfLines={1}
         style={[styles.input, props.textStyle]}

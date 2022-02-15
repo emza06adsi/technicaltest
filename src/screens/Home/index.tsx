@@ -8,6 +8,9 @@ import { useAppSelector } from '../../redux/hooks';
 import { getParkUsers, ParkUser, useUsersActions } from '../../data/users';
 import { useAppActions } from '../../data/app';
 import UserCell from '../../components/UserCell';
+import { Strings } from '../../utils/strings';
+import MenuButton from '../../components/MenuButton';
+const MockMenuData:string[] = [Strings.addVechicle, Strings.history, Strings.reserva, Strings.myVehicles, Strings.myParqueaderos, Strings.configuration];
 
 export default function HomeScreen({navigation}:any) {
 
@@ -17,7 +20,7 @@ export default function HomeScreen({navigation}:any) {
   const { parkUsers } = useAppSelector(state => state.users)
   const [ currentParkUser, setCurrentParkUser ] = useState<ParkUser>();
   const bottomSheetRef = useRef<BottomSheet>(null);
-  const snapPoints = useMemo(() => ['11%', '60%'], []);
+  const snapPoints = useMemo(() => ['11%', '55%'], []);
 
   useEffect(()=>{
     AppActions.setLoading(true)
@@ -53,6 +56,7 @@ export default function HomeScreen({navigation}:any) {
         <View style={styles.sheetContainer}>
           <View style={[styles.sheetHelper]}/>
           <View style={styles.sheetContent}>
+            {MockMenuData.map((mockMenuItem,index)=><MenuButton key={`mockMenu_${index}`} label={mockMenuItem} />)}
           </View>
         </View>
     </BottomSheet>

@@ -5,5 +5,11 @@ export const Strings = {
     login: 'Ingresar',
     userError: 'Error al cargar usuario',
     ok: 'Ok',
-    you: ` (Tú)`
+    you: ` (Tú)`,
+    addVechicle: 'Agregar Vehículo',
+    history: 'Historial',
+    reserva: 'Reservas',
+    myVehicles: 'Mis Vehículos',
+    myParqueaderos: 'Mis Parqueaderos',
+    configuration: 'Configuración',
 }

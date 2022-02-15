@@ -23,6 +23,11 @@ const styles = StyleSheet.create({
         flex: 1,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
+        flexDirection: 'row',
+        paddingHorizontal: 50,
+        paddingVertical: 35,
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
     },
     bottomMenu:{
         flexDirection: 'row', 

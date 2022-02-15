@@ -18,6 +18,9 @@ const styles = StyleSheet.create({
     buttonStyle:{
         marginTop: 25,
         width: '80%',
+    },
+    activityIndicator:{
+        marginTop: 20,
     }
 })
 

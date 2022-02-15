@@ -4,4 +4,5 @@ export const Strings = {
     introduceYour: 'Introduce tu',
     login: 'Ingresar',
     userError: 'Error al cargar usuario',
+    ok: 'Ok',
 }

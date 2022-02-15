@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import styles from './styles';
-import { View } from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 import CustomTextInput from '../../components/CustomTextInput';
 import { Strings } from '../../utils/strings';
 import CustomButton from '../../components/CustomButton';
-import { useAppSelector } from 'redux/hooks';
 import { useAppActions } from '../../data/app';
+import { useAppSelector } from '../../redux/hooks';
+import { Colors } from '../../utils/colors';
 
 export default function LoginScreen({navigation}:any) {
 
   const [ email, setEmail ] = useState<string>('');
   const [ password, setPassword ] = useState<string>('');
   const AppActions = useAppActions();
+  const { loading } = useAppSelector(state => state.app);
 
   const loginAction = () => {
     AppActions.loginUser({email, password})
@@ -34,10 +36,12 @@ export default function LoginScreen({navigation}:any) {
       onChangeText={(newPass)=>setPassword(newPass)}
       onSubmit={()=>loginAction()}
     />
-    <CustomButton
-      label={Strings.login}
-      style={styles.buttonStyle}
-      onPress={()=>loginAction()}
-    />
+    {
+      loading ? <ActivityIndicator style={styles.activityIndicator} color={Colors.White} /> : <CustomButton
+        label={Strings.login}
+        style={styles.buttonStyle}
+        onPress={()=>loginAction()}
+      />
+    }
   </View>)
 }

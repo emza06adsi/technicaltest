@@ -1,8 +1,8 @@
-import { createAsyncThunk, createSlice, bindActionCreators } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, bindActionCreators, PayloadAction } from '@reduxjs/toolkit'
 import { useRef } from 'react'
-import { useAppDispatch } from 'redux/hooks'
-import CustomApiProvider from 'src/services/CustomApiProvider'
-import { Endpoints } from 'utils/endpoints'
+import { useAppDispatch } from '../redux/hooks'
+import CustomApiProvider from '../services/CustomApiProvider'
+import { Endpoints } from '../utils/endpoints'
 import { Strings } from '../utils/strings'
 
 //User types
@@ -30,6 +30,9 @@ export const appSlice = createSlice({
     initialState,
     reducers: {
       reset: () => initialState,
+      clearError: (state: AppState, action: PayloadAction<any>) => {
+        state.error = '';
+      },
     },
     extraReducers: builder => {
       builder.addCase(loginUser.pending, state => {
@@ -39,7 +42,7 @@ export const appSlice = createSlice({
       }),
       builder.addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false
-        state.user = state.user
+        state.user = action.payload?.user || undefined
         state.error = state.user === undefined ? Strings.userError : ''
       }),
       builder.addCase(loginUser.rejected, state => {
@@ -58,7 +61,7 @@ export interface Credentials{
 export const loginUser = createAsyncThunk('app/loginUser',async (credentials: Credentials) => {
   try{
     const authUsers = await CustomApiProvider.get(Endpoints.loginUsers) as any[];
-    const foundUser = authUsers && authUsers.filter(({email, password})=> email === credentials.email && credentials.password)[0];
+    const foundUser = authUsers && authUsers.filter(({email, password})=> email === credentials.email && credentials.password)[0] as User;
     return { user: foundUser }
   }catch(e){
     console.error(`${e}`)

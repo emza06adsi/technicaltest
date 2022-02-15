@@ -5,14 +5,14 @@ import BottomSheet from '@gorhom/bottom-sheet';
 import NavigationBar from '../../navigation/components/NavigationBar';
 import { Colors } from '../../utils/colors';
 import { useAppSelector } from '../../redux/hooks';
-import { getParkUsers, useUsersActions } from '../../data/users';
+import { getParkUsers, ParkUser, useUsersActions } from '../../data/users';
 import { useAppActions } from '../../data/app';
 
 export default function HomeScreen({navigation}:any) {
 
   const UsersActions = useUsersActions();
   const AppActions = useAppActions();
-  const { loading } = useAppSelector(state => state.app)
+  const { loading, user } = useAppSelector(state => state.app)
   const { parkUsers } = useAppSelector(state => state.users)
   const bottomSheetRef = useRef<BottomSheet>(null);
   const snapPoints = useMemo(() => ['11%', '60%'], []);
@@ -22,6 +22,10 @@ export default function HomeScreen({navigation}:any) {
     AppActions.setLoading(true)
     getParkUsers().then((foundUsers)=>{
       UsersActions.setParkUsers(foundUsers);
+      try{
+        const currentUserData:ParkUser = foundUsers.filter(({email})=> email === user!.email)[0];
+        console.log(`Soy el usuario ${currentUserData.firstName} ${currentUserData.lastName} y mi cédula es: ${currentUserData.uid}`)
+      }catch(e){console.error(e)}
       AppActions.setLoading(false)
     }).catch((e)=>{
       AppActions.setError(`${e}`)

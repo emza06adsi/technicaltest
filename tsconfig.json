@@ -12,6 +12,11 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
+      "redux/*": ["src/redux/*"],
+      "navigation/*": ["src/navigation/*"],
+      "screens/*": ["src/screens/*"],
+      "utils/*": ["src/utils/*"],
+      "components/*": ["src/components/*"]
     },
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,

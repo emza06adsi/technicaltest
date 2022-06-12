@@ -13,7 +13,7 @@ export interface CustomTextInputProps extends TextInputProps {
 
 export default function CustomTextInput(props:CustomTextInputProps) {
   return (<View style={[styles.inputContainer, props.containerStyle]}>
-      {props.label && <Text style={[styles.labelDefault]}>{props.label}</Text>}
+      {props.label && <Text style={[styles.labelDefault, props.labelStyle]}>{props.label}</Text>}
       <TextInput
         placeholderTextColor={'rgba(255,255,255,0.55)'}
         {...props}

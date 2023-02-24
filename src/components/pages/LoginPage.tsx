@@ -1,11 +1,17 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import LoginForm from '../molecules/LoginForm';
+import {useNavigation} from '@react-navigation/native';
+import { Linking } from 'react-native';
+
 
 const LoginPage: React.FC = () => {
+  const navigation = useNavigation();
+
   const handleLoginSubmit = (email: string, password: string) => {
-    // Aquí se puede agregar la lógica de autenticación
-    console.log(`Correo electrónico: ${email}, Contraseña: ${password}`);
+    // console.log(`Correo electrónico: ${email}, Contraseña: ${password}`);
+    navigation.navigate('Home' as never);
+    
   };
 
   return (

@@ -1,10 +1,16 @@
 import React from 'react';
+import {Provider} from 'react-redux';
 import {View, Text, Button} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import LoginPage from './src/components/pages/LoginPage';
 import Navigator from './src/navigator/StackNavigator';
+import thunk from 'redux-thunk';
+import rootReducer from './src/redux/reducers/rootReducer';
+import {createStore, applyMiddleware} from 'redux';
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 type RootStackParamList = {
   Home: undefined;
@@ -23,10 +29,12 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 const App: React.FC = () => {
   return (
-    <NavigationContainer>
-      <Text>Details Screen</Text>
-      <Navigator />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Text>Details Screen</Text>
+        <Navigator />
+      </NavigationContainer>
+    </Provider>
   );
 };
 

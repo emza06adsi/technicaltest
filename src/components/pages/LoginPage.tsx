@@ -1,17 +1,14 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Alert} from 'react-native';
 import LoginForm from '../molecules/LoginForm';
-import {useNavigation} from '@react-navigation/native';
-import { Linking } from 'react-native';
-
-
+import {login} from '../../redux/actions/authActions';
+import {connect} from 'react-redux';
+import {useDispatch} from 'react-redux';
 const LoginPage: React.FC = () => {
-  const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const handleLoginSubmit = (email: string, password: string) => {
-    // console.log(`Correo electrónico: ${email}, Contraseña: ${password}`);
-    navigation.navigate('Home' as never);
-    
+    dispatch(login(email, password) as any);
   };
 
   return (
@@ -30,4 +27,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginPage;
+export default connect(null, {login})(LoginPage);

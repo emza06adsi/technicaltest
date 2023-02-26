@@ -1,12 +1,12 @@
 import React from 'react';
-import { TextInput as RNTextInput, StyleSheet } from 'react-native';
+import {TextInput as RNTextInput, StyleSheet} from 'react-native';
 
 interface TextInputProps {
   placeholder: string;
   onChangeText: (text: string) => void;
 }
 
-const TextInput: React.FC<TextInputProps> = ({ placeholder, onChangeText }) => {
+const TextInput: React.FC<TextInputProps> = ({placeholder, onChangeText}) => {
   return (
     <RNTextInput
       style={styles.input}
@@ -22,6 +22,10 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     marginVertical: 10,
+    width: '80%',
+    zIndex: -50,
+    position: 'relative',
+    textAlign: 'center',
   },
 });
 

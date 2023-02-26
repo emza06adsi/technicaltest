@@ -5,7 +5,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import LoginPage from '../components/pages/LoginPage';
 import {RootState} from '../redux/reducers/rootReducer';
 import {connect, useSelector} from 'react-redux';
-import {AuthState} from '../redux/reducers/authReducer';
 
 function HomeScreen() {
   return (
@@ -17,12 +16,7 @@ function HomeScreen() {
 
 const Stack = createNativeStackNavigator();
 
-// interface Props {
-//   isLoggedIn: boolean;
-// }
-
 const Navigator: React.FC<any> = () => {
-  // const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const isLoggedIn = useSelector((state: any) => state.auth.isLoggedIn);
 
   useEffect(() => {
@@ -39,11 +33,5 @@ const Navigator: React.FC<any> = () => {
     </Stack.Navigator>
   );
 };
-
-// const mapStateToProps = (state: RootState) => {
-//   return {
-//     isLoggedIn: state.auth.isLoggedIn,
-//   };
-// };
 
 export default Navigator;

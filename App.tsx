@@ -9,7 +9,6 @@ import Navigator from './src/navigator/StackNavigator';
 import thunk from 'redux-thunk';
 import rootReducer from './src/redux/reducers/rootReducer';
 import {createStore, applyMiddleware} from 'redux';
-
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 type RootStackParamList = {
@@ -31,7 +30,6 @@ const App: React.FC = () => {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Text>Details Screen</Text>
         <Navigator />
       </NavigationContainer>
     </Provider>

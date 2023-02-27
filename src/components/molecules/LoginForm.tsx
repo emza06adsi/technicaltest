@@ -4,6 +4,7 @@ import TextInput from '../atoms/TextInput';
 import Button from '../atoms/Button';
 import EmailInput from '../templates/EmailInput';
 import PasswordInput from '../templates/PasswordInput';
+import LoginOption from '../templates/LoginOption';
 interface LoginFormProps {
   onSubmit: (email: string, password: string) => void;
 }
@@ -28,14 +29,22 @@ const LoginForm: React.FC<LoginFormProps> = ({onSubmit}) => {
     <View style={styles.container}>
       <Image
         source={require('../assets/logo.jpeg')}
-        style={{width: 100, height: 100, marginBottom: 50}}
+        style={{width: 100, height: 100, marginBottom: 30}}
       />
-
-      <Text style={styles.title}>Bienvenido a keando</Text>
-      <EmailInput handleEmailChange={handleEmailChange}/>
+      <Text style={styles.title}>Bienvenido a Keando</Text>
+      <EmailInput handleEmailChange={handleEmailChange} />
       <PasswordInput handlePasswordChange={handlePasswordChange} />
-      {/* <TextInput placeholder="Contraseña" onChangeText={handlePasswordChange} /> */}
-      <Button title="Iniciar sesión" onPress={handleSubmit} />
+      <Button title="Ingresar" onPress={handleSubmit} />
+      <Text style={styles.forgotPasswordText}>
+        ¿Has olvidado tu contraseña?
+      </Text>
+      <Text style={styles.loginOption}>
+        ------------------ O inicia con ------------------
+      </Text>
+      <LoginOption />
+      <Text style={styles.loginOption}>
+        No tienes una cuenta? <Text style={{color:'#61b4de'}}> Crea una</Text>
+      </Text>
     </View>
   );
 };
@@ -51,8 +60,20 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: 30,
     color: '#61b4de',
+    fontFamily: 'System',
+  },
+  forgotPasswordText: {
+    fontSize: 16,
+    marginTop: 10,
+    color: '#FFFFFF',
+    fontFamily: 'System',
+  },
+  loginOption: {
+    fontSize: 16,
+    marginTop: 30,
+    color: '#FFFFFF',
     fontFamily: 'System',
   },
 });

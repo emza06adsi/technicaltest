@@ -5,6 +5,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import LoginPage from '../components/pages/LoginPage';
 import {RootState} from '../redux/reducers/rootReducer';
 import {connect, useSelector} from 'react-redux';
+import {StatusBar} from 'react-native';
 
 function HomeScreen() {
   return (
@@ -20,17 +21,33 @@ const Navigator: React.FC<any> = () => {
   const isLoggedIn = useSelector((state: any) => state.auth.isLoggedIn);
 
   useEffect(() => {
+    StatusBar.setBackgroundColor('#339bcf');
+    StatusBar.setBarStyle('light-content');
+    StatusBar.setHidden(false);
+  }, []);
+
+  useEffect(() => {
     isLoggedIn;
   }, [isLoggedIn]);
 
   return (
-    <Stack.Navigator>
-      {!isLoggedIn ? (
-        <Stack.Screen name="Login" component={LoginPage} />
-      ) : (
-        <Stack.Screen name="Home" component={HomeScreen} />
-      )}
-    </Stack.Navigator>
+    <View style={{flex: 1}}>
+      <Stack.Navigator>
+        {!isLoggedIn ? (
+          <Stack.Screen
+            options={{headerShown: false}}
+            name="Login"
+            component={LoginPage}
+          />
+        ) : (
+          <Stack.Screen
+            options={{headerShown: false}}
+            name="Home"
+            component={HomeScreen}
+          />
+        )}
+      </Stack.Navigator>
+    </View>
   );
 };
 

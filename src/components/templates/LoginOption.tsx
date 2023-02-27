@@ -6,9 +6,7 @@ interface PasswordInputProps {
   handlePasswordChange: any;
 }
 
-const PasswordInput: React.FC<PasswordInputProps> = ({
-  handlePasswordChange,
-}) => {
+const LoginOption: React.FC<any> = () => {
   const [showUserIcon, setShowUserIcon] = useState(true);
 
   return (
@@ -16,42 +14,49 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
       style={{
         flexDirection: 'row',
         alignItems: 'center',
-        position: 'relative',
       }}>
       <TouchableOpacity onPress={() => setShowUserIcon(!showUserIcon)}>
         <View
           style={{
-            width: 80,
-            height: 80,
+            width: 50,
+            height: 50,
             borderRadius: 100,
             backgroundColor: '#ffffff',
             justifyContent: 'center',
             alignItems: 'center',
-            position: 'absolute',
-            top: -35,
-            left: -10,
+            top: 10,
+            left: -20,
             right: 0,
             bottom: 0,
             zIndex: 10,
-            elevation:10
+            elevation: 10,
           }}>
           <Svg width={30} height={30} viewBox="0 0 24 24">
-            <Rect x="3" y="10" width="18" height="10" rx="2" />
-            <Path
-              fill="none"
-              stroke={'#3acce1'}
-              strokeWidth="2"
-              d="M17,9H16V7c0-3.31-2.69-6-6-6S4,3.69,4,7v2H3c-1.1,0-2,0.9-2,2v10c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V11C19,9.9,18.1,9,17,9z"
-            />
+            
           </Svg>
         </View>
       </TouchableOpacity>
-      <TextInput
-        placeholder="Contraseña"
-        onChangeText={handlePasswordChange}
-      />
+      <TouchableOpacity onPress={() => setShowUserIcon(!showUserIcon)}>
+        <View
+          style={{
+            width: 50,
+            height: 50,
+            borderRadius: 100,
+            backgroundColor: '#ffffff',
+            justifyContent: 'center',
+            alignItems: 'center',
+            top: 10,
+            left: 10,
+            right: 0,
+            bottom: 0,
+            zIndex: 10,
+            elevation: 10,
+          }}>
+          <Svg width={30} height={30} viewBox="0 0 24 24"></Svg>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };
 
-export default PasswordInput;
+export default LoginOption;

@@ -5,17 +5,13 @@ import {RootState} from '../reducers/rootReducer';
 import {AuthActionTypes, LOGIN_SUCCESS, LOGIN_FAILURE} from './authTypes';
 import {User} from './userTypes';
 import {authenticateUser} from './authService';
-// import {useNavigation} from '@react-navigation/native';
 
-// Función que realiza el login del usuario
 export const login = (
   email: string,
   password: string,
 ): ThunkAction<void, RootState, unknown, AuthActionTypes> => {
-
   return async dispatch => {
     try {
-
       const user: User = await authenticateUser(email, password);
       console.log(user);
       dispatch({

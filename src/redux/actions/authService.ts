@@ -1,4 +1,3 @@
-import {NavigationContainer} from '@react-navigation/native';
 import {Alert} from 'react-native/types';
 import {User} from './userTypes';
 
@@ -11,7 +10,7 @@ export const authenticateUser = async (
     return user.email === email && user.password === password;
   });
   if (user === undefined) {
-    return Promise.reject(new Error());
+    return Promise.reject(new Error('Error'));
   }
   return Promise.resolve({email, password});
 };

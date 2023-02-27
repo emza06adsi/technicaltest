@@ -4,7 +4,7 @@ import LoginForm from '../molecules/LoginForm';
 import {login} from '../../redux/actions/authActions';
 import {connect} from 'react-redux';
 import {useDispatch} from 'react-redux';
-import {Image} from 'react-native';
+import {Image, ScrollView} from 'react-native';
 
 const LoginPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -14,9 +14,11 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <LoginForm onSubmit={handleLoginSubmit} />
-    </View>
+    <ScrollView>
+      <View style={styles.container}>
+        <LoginForm onSubmit={handleLoginSubmit} />
+      </View>
+    </ScrollView>
   );
 };
 
